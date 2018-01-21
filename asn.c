@@ -7,7 +7,14 @@ int p[2], j;
 pid_t pid;
 char buffer[256];
 char inbuf[MSGSIZE];
+
+
+
 int main(void){
+  system("stty raw igncr -echo");
+
+int c;
+
   /*-- Open the pipe ----*/
  if (pipe(p) < 0)
  {
@@ -22,8 +29,9 @@ int main(void){
 /*------- parent writes information into the pipe -------*/
 if (pid > 0)
 {
-  while(fgets(buffer,sizeof(buffer),stdin)){
-    write(p[1], buffer, MSGSIZE);
+  while((c = getchar())!='.'){
+    write(p[1], "a", MSGSIZE);
+    // putchar(c);
   }
 }
 if (pid == 0)
@@ -31,11 +39,10 @@ if (pid == 0)
   while(1)
   {
     read (p[0], inbuf, MSGSIZE);
-    printf ("%s\n", inbuf);
+    printf ("%s\n", "inbuf");
   }
 }
-  // system("stty,raw,igncr,-echo");
 
-  // system("stty,-raw,-igncr,echo");
+  system("stty -raw -igncr echo");
 return 1;
 }
