@@ -68,19 +68,26 @@ void translate(int it[2],int io[2]) {
                                         x = i;
                                         j = i-1;
                                         temp = i-2;
+
+                                        while (inbuf[x]!='\0') {
+                                                inbuf[x] = inbuf[x+1];
+                                                x++;
+                                        }
+                                        while (inbuf[j]!='\0') {
+                                                inbuf[j] = inbuf[j+1];
+                                                j++;
+                                        }
                                 }else{
                                         x = i;
                                         j = i;
                                         temp = 0;
+                                        while (inbuf[x]!='\0') {
+                                                inbuf[x] = inbuf[x+1];
+                                                x++;
+                                        }
+
                                 }
-                                while (inbuf[x]!='\0') {
-                                        inbuf[x] = inbuf[x+1];
-                                        x++;
-                                }
-                                while (inbuf[j]!='\0') {
-                                        inbuf[j] = inbuf[j+1];
-                                        j++;
-                                }
+
                                 inbuf[x] = '\0';
                                 i = temp;
                                 break;
