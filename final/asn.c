@@ -151,7 +151,7 @@ void input(int it[2], int io[2]) {
                 }
                 else if(c == 69) {
                         write(it[1],buffer,strlen(buffer)+1);
-                        memset(buffer, 0, (count*sizeof(buffer[0])+1));
+                        memset(buffer, 0, (count*sizeof(buffer[0])));
                         count = 0;
                 }
                 else if (c == 84) {
